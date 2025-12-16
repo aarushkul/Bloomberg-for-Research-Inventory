@@ -1,0 +1,1809 @@
+[
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT01575535",
+        "orgStudyIdInfo": {
+          "id": "S0106B"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "S0106B",
+            "type": "OTHER",
+            "domain": "SWOG"
+          },
+          {
+            "id": "U10CA032102",
+            "type": "NIH",
+            "link": "https://reporter.nih.gov/quickSearch/U10CA032102"
+          }
+        ],
+        "organization": {
+          "fullName": "SWOG Cancer Research Network",
+          "class": "NETWORK"
+        },
+        "briefTitle": "S0106B Studying Bone Marrow Samples From Women With Acute Myeloid Leukemia",
+        "officialTitle": "S0106B, Stem Cell Origin in AML: Prognostic and Therapeutic Implications"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2015-03",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2012-04"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2012-05",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2012-05",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2012-04-10",
+        "studyFirstSubmitQcDate": "2012-04-10",
+        "studyFirstPostDateStruct": {
+          "date": "2012-04-11",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2015-03-05",
+        "lastUpdatePostDateStruct": {
+          "date": "2015-03-06",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "SWOG Cancer Research Network",
+          "class": "NETWORK"
+        },
+        "collaborators": [
+          {
+            "name": "National Cancer Institute (NCI)",
+            "class": "NIH"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": true
+      },
+      "descriptionModule": {
+        "briefSummary": "RATIONALE: Studying samples of bone marrow from patients with cancer in the laboratory may help doctors identify and learn more about biomarkers related to cancer.\n\nPURPOSE: This research trial studies bone marrow samples from women with acute myeloid leukemia.",
+        "detailedDescription": "OBJECTIVES:\n\n* Estimate the proportion of acute myeloid leukemia (AMLs) that originate in CD33+ precursors or in which uncontrolled growth is limited to CD33+ precursors.\n* Explore whether there is an association between the cellular origin of AML (i.e., origination in CD33+ precursors or not) and cytogenetic, molecular, and other patient characteristics.\n* Explore whether overall survival (OS), event-free survival (EFS), disease-free survival (DFS), response rate (RR), or relapse rate is improved for patients with AMLs that originate in CD33+ precursors or in which uncontrolled growth is limited to CD33+ precursors compared to patients with clonally involved cells not detected.\n\nOUTLINE: Archived bone marrow samples are analyzed for CD33+ progenitors, X-chromosome inactivation, and somatic mutations (t(8;21), inv(16), FLT3/ITD, NPM1, CEBPA, KIT) by fluorescence-activated cell sorting, long-term culture in hypoxic condition in cytokine-containing liquid media, and flow cytometry. Results are then compared with each patient clinical data."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Leukemia"
+        ],
+        "keywords": [
+          "untreated adult acute myeloid leukemia",
+          "adult acute basophilic leukemia",
+          "adult acute eosinophilic leukemia",
+          "adult erythroleukemia (M6a)",
+          "adult pure erythroid leukemia (M6b)",
+          "adult acute megakaryoblastic leukemia (M7)",
+          "adult acute minimally differentiated myeloid leukemia (M0)",
+          "adult acute monoblastic leukemia (M5a)",
+          "adult acute monocytic leukemia (M5b)",
+          "adult acute myeloblastic leukemia with maturation (M2)",
+          "adult acute myeloblastic leukemia without maturation (M1)",
+          "adult acute myeloid leukemia with 11q23 (MLL) abnormalities",
+          "adult acute myeloid leukemia with del(5q)",
+          "adult acute myeloid leukemia with inv(16)(p13;q22)",
+          "adult acute myeloid leukemia with t(16;16)(p13;q22)",
+          "adult acute myeloid leukemia with t(8;21)(q22;q22)",
+          "adult acute myelomonocytic leukemia (M4)"
+        ]
+      },
+      "designModule": {
+        "studyType": "OBSERVATIONAL",
+        "patientRegistry": false,
+        "designInfo": {
+          "timePerspective": "RETROSPECTIVE"
+        },
+        "enrollmentInfo": {
+          "count": 100,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "interventions": [
+          {
+            "type": "GENETIC",
+            "name": "gene expression analysis"
+          },
+          {
+            "type": "OTHER",
+            "name": "flow cytometry"
+          },
+          {
+            "type": "OTHER",
+            "name": "fluorescence activated cell sorting"
+          },
+          {
+            "type": "OTHER",
+            "name": "laboratory biomarker analysis"
+          },
+          {
+            "type": "OTHER",
+            "name": "medical chart review"
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Association between CD33+ precursors and cytogenetic and/or molecular risks using Fisher's exact test",
+            "timeFrame": "May 2012"
+          },
+          {
+            "measure": "Relationship between emergence of individual mutations [t(8;21), inv(16), FLT3/ITD, NPM1, CEBPA, and KIT], clonality, and stage of cell differentiation using Fisher's exact test",
+            "timeFrame": "May 2012"
+          },
+          {
+            "measure": "Associations between survival outcomes (OS, EFS, DFS, RR, and relapse rate) and CD33+ restriction using regression analysis",
+            "timeFrame": "May 2012"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "DISEASE CHARACTERISTICS:\n\n* Diagnostic bone marrow specimens from female patients with untreated AML undergoing intensive (\"3+7\"-like) induction chemotherapy\n* Specimens from the South Western Oncology Group (SWOG) protocols S0106 (age 18 to 60 years), excluding patients who received gemtuzumab ozogamicin (GO), and S9333 (age \\> 60 years)\n\nPATIENT CHARACTERISTICS:\n\n* See Disease Characteristics\n\nPRIOR CONCURRENT THERAPY:\n\n* See Disease Characteristics",
+        "healthyVolunteers": false,
+        "sex": "FEMALE",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ],
+        "studyPopulation": "Repository specimens",
+        "samplingMethod": "NON_PROBABILITY_SAMPLE"
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Roland Walter, MD, PhD",
+            "affiliation": "Fred Hutchinson Cancer Center",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2025-12-15"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D007938",
+            "term": "Leukemia"
+          },
+          {
+            "id": "D015471",
+            "term": "Leukemia, Basophilic, Acute"
+          },
+          {
+            "id": "D015472",
+            "term": "Leukemia, Eosinophilic, Acute"
+          },
+          {
+            "id": "D004915",
+            "term": "Leukemia, Erythroblastic, Acute"
+          },
+          {
+            "id": "D007947",
+            "term": "Leukemia, Megakaryoblastic, Acute"
+          },
+          {
+            "id": "D007948",
+            "term": "Leukemia, Monocytic, Acute"
+          },
+          {
+            "id": "D015470",
+            "term": "Leukemia, Myeloid, Acute"
+          },
+          {
+            "id": "D000013",
+            "term": "Congenital Abnormalities"
+          },
+          {
+            "id": "D015479",
+            "term": "Leukemia, Myelomonocytic, Acute"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D009370",
+            "term": "Neoplasms by Histologic Type"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D006402",
+            "term": "Hematologic Diseases"
+          },
+          {
+            "id": "D006425",
+            "term": "Hemic and Lymphatic Diseases"
+          },
+          {
+            "id": "D007951",
+            "term": "Leukemia, Myeloid"
+          },
+          {
+            "id": "D009196",
+            "term": "Myeloproliferative Disorders"
+          },
+          {
+            "id": "D001855",
+            "term": "Bone Marrow Diseases"
+          },
+          {
+            "id": "D009358",
+            "term": "Congenital, Hereditary, and Neonatal Diseases and Abnormalities"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D020869",
+            "term": "Gene Expression Profiling"
+          },
+          {
+            "id": "D005434",
+            "term": "Flow Cytometry"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D005821",
+            "term": "Genetic Techniques"
+          },
+          {
+            "id": "D008919",
+            "term": "Investigative Techniques"
+          },
+          {
+            "id": "D002469",
+            "term": "Cell Separation"
+          },
+          {
+            "id": "D003584",
+            "term": "Cytological Techniques"
+          },
+          {
+            "id": "D019411",
+            "term": "Clinical Laboratory Techniques"
+          },
+          {
+            "id": "D019937",
+            "term": "Diagnostic Techniques and Procedures"
+          },
+          {
+            "id": "D003933",
+            "term": "Diagnosis"
+          },
+          {
+            "id": "D003592",
+            "term": "Cytophotometry"
+          },
+          {
+            "id": "D005470",
+            "term": "Fluorometry"
+          },
+          {
+            "id": "D008163",
+            "term": "Luminescent Measurements"
+          },
+          {
+            "id": "D010783",
+            "term": "Photometry"
+          },
+          {
+            "id": "D002623",
+            "term": "Chemistry Techniques, Analytical"
+          }
+        ]
+      }
+    },
+    "hasResults": false,
+    "nct_id": "NCT01575535"
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT04351035",
+        "orgStudyIdInfo": {
+          "id": "CNOG-MC001"
+        },
+        "organization": {
+          "fullName": "Xinhua Hospital, Shanghai Jiao Tong University School of Medicine",
+          "class": "OTHER"
+        },
+        "briefTitle": "National Wide Cross-sectional Study in Paediatric Central Nervous System Tumours in China -- the CNOG-MC001 Registry",
+        "officialTitle": "Retrospective, Multi-center Cross-sectional Study on Paediatric Central Nervous Systerm Tumours by CNOG-MC001 Collaborative Group"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2021-08",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2018-10-27",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2021-07-01",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2021-08-31",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2020-04-16",
+        "studyFirstSubmitQcDate": "2020-04-16",
+        "studyFirstPostDateStruct": {
+          "date": "2020-04-17",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2021-08-31",
+        "lastUpdatePostDateStruct": {
+          "date": "2021-09-08",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "PRINCIPAL_INVESTIGATOR",
+          "investigatorFullName": "Jie Ma, MD, PhD",
+          "investigatorTitle": "Director of Dept Pediatric Neurosurgery",
+          "investigatorAffiliation": "Xinhua Hospital, Shanghai Jiao Tong University School of Medicine"
+        },
+        "leadSponsor": {
+          "name": "Xinhua Hospital, Shanghai Jiao Tong University School of Medicine",
+          "class": "OTHER"
+        },
+        "collaborators": [
+          {
+            "name": "CNOG-MC001 Collaborative Group",
+            "class": "UNKNOWN"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": true,
+        "isFdaRegulatedDrug": false,
+        "isFdaRegulatedDevice": false
+      },
+      "descriptionModule": {
+        "briefSummary": "Tumours of central nervous system (CNS) is the most common type of solid tumour in childhood. In China, there is limited epidemiology information. Released data from Chinese CDC did not include types of CNS tumours and geographic contribution. As the Children's Neuro-Oncology Group (CNOG) was established in China in May 2017, it makes studies from multiple centers in children's brain tumors become practical. This retrospective cross-sectional study was aligned on CNOG annual meeting in 2018 and research group was named as CNOG-MC001 (MC, multicenter) collaborative group.",
+        "detailedDescription": "CNS tumours are mostly seen solid tumours in childhood , as the second common malignancy following leukemia in children. The annual age-standardized incidence rate per 1,000,000 person-years (ASR) of CNS tumour in international children's cancer incidence study is 20-30. In Asia, ASR of paediatric CNS tumours is around 15.0-24.9 in Japan, Korea, Singapore. For Chinese races including mainland of China, Taiwan and Hong Kong, ASRs of paediatric CNS tumour are 15.0, 17.4 and 23.8.\n\nIn 2017 in Shanghai, Children's Neuro-Oncology Group (CNOG) was found in 5th CSPN (Chinese Society of Pediatric Neurosurgery) / 9th CPNF (China Pediatric Neurosurgery Forum) conference, with 35 founding member institutions and 30 founding observation member institutions in mainland of China. Based on this progress, national wide registry (CNOG-MC001) was settled to obtain basic information about CNS tumour cases, combined with available epidemiology data from publications to assess current medical situation on paediatric CNS tumours in China. The protocol of CNOG-MC001 was aligned by CSPN and CNOG member institutions in CNOG annual meeting in 2018 and the study ofiicially started right after the meeting on 20181027.\n\nThe first step of this study is a national wide pre-survey to all 35 CNOG member institutions and other 22 CSPN members. The pre-survey data sheet included number of annual surgically treated paediatric CNS tumour cases (age ranging from 0 to 18 years old, classified by WHO Classification of Tumours of the Central Nervous System 2016 version), to assess the proper sites to be involved in this study. After retrieving the pre-survey results, large-scale, detailed case data sheets will be sent to participating institutions as members of CNOG-MC001 collaborative group."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Tumors, Central Nervous System",
+          "Pediatric Brain Tumor",
+          "Malignant Brain Tumor",
+          "Benign Brain Tumor"
+        ],
+        "keywords": [
+          "national wide",
+          "cross-sectional",
+          "retrospective",
+          "CNOG-MC001",
+          "pediatric",
+          "central nervous system tumor"
+        ]
+      },
+      "designModule": {
+        "studyType": "OBSERVATIONAL",
+        "patientRegistry": true,
+        "targetDuration": "3 Years",
+        "designInfo": {
+          "observationalModel": "COHORT",
+          "timePerspective": "CROSS_SECTIONAL"
+        },
+        "enrollmentInfo": {
+          "count": 4303,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Children with CNS tumours",
+            "description": "Patients newly diagnosed with CNS tumours in children younger than 18 y/o, who were under in-patient treatment, were labeled as candidate cases in the CNOG-MC001 cohort for reviewing.",
+            "interventionNames": [
+              "Procedure: Tumour resection"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "PROCEDURE",
+            "name": "Tumour resection",
+            "description": "It is mandatory that patients recieve surgical treatment for pathological diagnosis of CNS tumours in enrolled patients. Surgical resection of tumours could be regarded as total / subtotal / partial resection and biopsy.",
+            "armGroupLabels": [
+              "Children with CNS tumours"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Baseline information of children with CNS tumours",
+            "description": "Baseline information including gender, age, and institutional geographic data are required for epidemiology analysis.",
+            "timeFrame": "2 years"
+          },
+          {
+            "measure": "Tumour type and anatomic location",
+            "description": "Tumour type according to 2016 edition of the World Health Organization (WHO) Classification of Tumours of the Central Nervous System (CNS) is mandatory for epidemiology analysis.",
+            "timeFrame": "2 year"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Overall Survival",
+            "description": "Available overall survival data with post surgery treatments records of enrolled cases is preferred but not mandatory for outcome analysis.",
+            "timeFrame": "1 year"
+          },
+          {
+            "measure": "Progression Free Survival",
+            "description": "Progression free survival data is preferred but not mandatory for outcome analysis.",
+            "timeFrame": "1 year"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* patients who were newly diagnosed with CNS tumour admitted for in-patient treatments during period of Jan.1st 2016 to Dec. 31st 2017\n* patients who were less than 18 year-old at diagnosis\n* patients with available mandatory information as age, gender during enrollment\n* patients must have pathological diagnosis of tumours, which followed 2016 edition of the World Health Organization (WHO) Classification of Tumours of the Central Nervous System (CNS), except the following conditions:\n\n  1. Diffuse Intrinsic Pontine Glioma (DIPG) according to classic symptoms and typical MRI\n  2. confirmed NF1 patients with classic symtoms and MRI representing Optic Pathway Glioma (OPG) with no surgical treatment indications will be marked as \"pilocytic astrocytoma\"\n  3. patients with newly diagnosed recurrence or metastasis of previously confirmed (before Jan.1st 2016) Embryonal Tumours (medulloblastoma, emryonal tumour with multilayered rosettes - C19MC altered, atypical teratoid / rhabdoid tumour / others) and high grade gliomas (glioblastoma, anaplastic astrocytoma) that were unwilling to recieve second surgical treatment / inoperable / without surgical indication, will be marked as original diagnosis\n  4. patients with newly diagnosed relapse of previously confirmed (before Jan.1st 2016) low grade glioma (defined as pilocytic astrocytoma, diffuse astrocytoma, pilomyxoid astrocytoma, pleomorphic xanthoastrocytoma, subependymal giant cell astrocytoma, oligodendroglioma, oligoastrocytoma, ganglioglioma, desmoplastic infantile astrocytoma and ganglioglioma, dysembryoplastic neuroepithelial tumour, papillary glioneuronal tumour, rosette-forming glioneuronal tumour of the fourth ventricle, angiocentric glioma, dysplastic cerebellar gangliocytoma, extraventricular neurocytoma, cerebellar liponeurocytoma, and central neurocytoma) and ependymal tumours in cross-sectional period, who were unwilling to be operated / inoperable / without surgical indication, will be marked as original diagnosis\n* clinical, image and pathology data of patients with unidentified pathological diagnosis from member sites of CNOG-MC001 collaborative group will be sent to study center for reviewing; cases with unidentifiable diagnosis after center review and alignment with CNOG-MC001 sites will be marked as \"unknown\"\n\nExclusion Criteria:\n\n* confirmed CNS metatasis patients whose tumour tissues were obtained from other systems other than CNS will be excluded\n* patients with newly diagnosed recurrence or metastasis of previously confirmed CNS Tumours, will be excluded when primary tumour diagnosis and progression time points were both in cross-sectional period; these patients will be only enrolled as \"newly diagnosed cases with primary tumours\" and recorded as \"progressed in follow-up\" in follow-up data sheet\n* patients with newly diagnosed relapse of previously confirmed (before Jan.1st 2016) low grade glioma and ependymal tumours, who were unwilling to be operated / inoperable, and were suspected as malignant transformation, will be excluded due to lack of pathological diagnosis\n* patients with insufficient or inconsistant data (e.g: patient diagnosed with primary medulloblastoma with tumour located in cerebral) will be excluded in center review after consulting with data-upload institutions",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "maximumAge": "18 Years",
+        "stdAges": [
+          "CHILD",
+          "ADULT"
+        ],
+        "studyPopulation": "Newly diagnosed paediatric (0-18 y/o) CNS tumous in period of Jan.1st 2016 to Dec.31st 2017, with sufficient baseline data and clear pathological diagnosis according to classification of CNS tumours - WHO 2016 version (for exceptions please refer to eligibility criteria)",
+        "samplingMethod": "NON_PROBABILITY_SAMPLE"
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Jie MA, M.D., Ph.D.",
+            "affiliation": "Xinhua Hospital, Shanghai Jiao Tong University School of Medicine",
+            "role": "STUDY_CHAIR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Anhui Provincial Children's Hospital",
+            "city": "Hefei",
+            "state": "Anhui",
+            "zip": "230051",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.86389,
+              "lon": 117.28083
+            }
+          },
+          {
+            "facility": "Beijing Tiantan Hospital, Capital Medical University",
+            "city": "Beijing",
+            "state": "Beijing Municipality",
+            "zip": "100070",
+            "country": "China",
+            "geoPoint": {
+              "lat": 39.9075,
+              "lon": 116.39723
+            }
+          },
+          {
+            "facility": "Children's Hospital of Chongqing Medical University",
+            "city": "Chongqing",
+            "state": "Chongqing Municipality",
+            "zip": "400014",
+            "country": "China",
+            "geoPoint": {
+              "lat": 29.56026,
+              "lon": 106.55771
+            }
+          },
+          {
+            "facility": "the First Hospital Affiliated To Army Medical University",
+            "city": "Chongqing",
+            "state": "Chongqing Municipality",
+            "zip": "400038",
+            "country": "China",
+            "geoPoint": {
+              "lat": 29.56026,
+              "lon": 106.55771
+            }
+          },
+          {
+            "facility": "Army Medical Center of PLA",
+            "city": "Chongqing",
+            "state": "Chongqing Municipality",
+            "zip": "400042",
+            "country": "China",
+            "geoPoint": {
+              "lat": 29.56026,
+              "lon": 106.55771
+            }
+          },
+          {
+            "facility": "the First Affiliated Hospital of Fujian Medical University",
+            "city": "Fuzhou",
+            "state": "Fujian",
+            "zip": "350001",
+            "country": "China",
+            "geoPoint": {
+              "lat": 26.06139,
+              "lon": 119.30611
+            }
+          },
+          {
+            "facility": "900 Hospital of the Joint Logistics Team of PLA",
+            "city": "Fuzhou",
+            "state": "Fujian",
+            "zip": "350025",
+            "country": "China",
+            "geoPoint": {
+              "lat": 26.06139,
+              "lon": 119.30611
+            }
+          },
+          {
+            "facility": "Lanzhou University Second Hospital",
+            "city": "Lanzhou",
+            "state": "Gansu",
+            "zip": "730030",
+            "country": "China",
+            "geoPoint": {
+              "lat": 36.05701,
+              "lon": 103.83987
+            }
+          },
+          {
+            "facility": "Guangdong 999 Brain Hospital",
+            "city": "Guangzhou",
+            "state": "Guangdong",
+            "zip": "510510",
+            "country": "China",
+            "geoPoint": {
+              "lat": 23.11667,
+              "lon": 113.25
+            }
+          },
+          {
+            "facility": "Affiliated Hospital of Guilin Medical University",
+            "city": "Guilin",
+            "state": "Guangxi",
+            "zip": "541001",
+            "country": "China",
+            "geoPoint": {
+              "lat": 25.28022,
+              "lon": 110.29639
+            }
+          },
+          {
+            "facility": "Affiliated Hospital of Zunyi Medical College",
+            "city": "Zunyi",
+            "state": "Guizhou",
+            "zip": "563000",
+            "country": "China",
+            "geoPoint": {
+              "lat": 27.68667,
+              "lon": 106.90722
+            }
+          },
+          {
+            "facility": "the Second Hospital of Hebei Medical University",
+            "city": "Shijiazhuang",
+            "state": "Hebei",
+            "zip": "050000",
+            "country": "China",
+            "geoPoint": {
+              "lat": 38.04139,
+              "lon": 114.47861
+            }
+          },
+          {
+            "facility": "the First Affiliated Hospital of Harbin Medical University",
+            "city": "Harbin",
+            "state": "Heilongjiang",
+            "zip": "150001",
+            "country": "China",
+            "geoPoint": {
+              "lat": 45.75,
+              "lon": 126.65
+            }
+          },
+          {
+            "facility": "Children's Hospital Affiliated to Zhengzhou University",
+            "city": "Zhengzhou",
+            "state": "Henan",
+            "zip": "450006",
+            "country": "China",
+            "geoPoint": {
+              "lat": 34.75778,
+              "lon": 113.64861
+            }
+          },
+          {
+            "facility": "the Third Affiliated Hospital of Zhengzhou University",
+            "city": "Zhengzhou",
+            "state": "Henan",
+            "zip": "450052",
+            "country": "China",
+            "geoPoint": {
+              "lat": 34.75778,
+              "lon": 113.64861
+            }
+          },
+          {
+            "facility": "Tongji Hospital, Tongji Medical College, Huazhong University of Science & Technology",
+            "city": "Wuhan",
+            "state": "Hubei",
+            "zip": "430022",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.58333,
+              "lon": 114.26667
+            }
+          },
+          {
+            "facility": "Renmin Hospital of Wuhan University / Hubei General Hospital",
+            "city": "Wuhan",
+            "state": "Hubei",
+            "zip": "430071",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.58333,
+              "lon": 114.26667
+            }
+          },
+          {
+            "facility": "the Fifth Affiliated Hospital of Zhengzhou University",
+            "city": "Zhengzhou",
+            "state": "Hunan",
+            "zip": "450014",
+            "country": "China"
+          },
+          {
+            "facility": "the Second Affiliated Hospital of Soochow University",
+            "city": "Suzhou",
+            "state": "Jiangsu",
+            "zip": "215004",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.30408,
+              "lon": 120.59538
+            }
+          },
+          {
+            "facility": "the First Affiliated Hospital of Soochow University",
+            "city": "Suzhou",
+            "state": "Jiangsu",
+            "zip": "215006",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.30408,
+              "lon": 120.59538
+            }
+          },
+          {
+            "facility": "Jiangxi Provincial Children's Hospital",
+            "city": "Nanchang",
+            "state": "Jiangxi",
+            "zip": "330006",
+            "country": "China",
+            "geoPoint": {
+              "lat": 28.68396,
+              "lon": 115.85306
+            }
+          },
+          {
+            "facility": "the First Affiliated Hospital of Nanchang University",
+            "city": "Nanchang",
+            "state": "Jiangxi",
+            "zip": "330006",
+            "country": "China",
+            "geoPoint": {
+              "lat": 28.68396,
+              "lon": 115.85306
+            }
+          },
+          {
+            "facility": "the First Bethune Hospital of Jilin University",
+            "city": "Ch\u2019ang-ch\u2019un",
+            "state": "Jilin",
+            "zip": "130021",
+            "country": "China",
+            "geoPoint": {
+              "lat": 42.74694,
+              "lon": 126.24667
+            }
+          },
+          {
+            "facility": "Shengjing Hospital Affiliated to China Medical University",
+            "city": "Shenyang",
+            "state": "Liaoning",
+            "zip": "110004",
+            "country": "China",
+            "geoPoint": {
+              "lat": 41.79222,
+              "lon": 123.43278
+            }
+          },
+          {
+            "facility": "the General Hospital of Ningxia Medical University",
+            "city": "Yinchuan",
+            "state": "Ningxia",
+            "zip": "750004",
+            "country": "China",
+            "geoPoint": {
+              "lat": 38.46806,
+              "lon": 106.27306
+            }
+          },
+          {
+            "facility": "Xi'an Children's Hospital",
+            "city": "Xi'an",
+            "state": "Shaanxi",
+            "zip": "710003",
+            "country": "China",
+            "geoPoint": {
+              "lat": 34.25833,
+              "lon": 108.92861
+            }
+          },
+          {
+            "facility": "Xijing Hospital of Air Force Military Medical University",
+            "city": "Xi'an",
+            "state": "Shaanxi",
+            "zip": "710032",
+            "country": "China",
+            "geoPoint": {
+              "lat": 34.25833,
+              "lon": 108.92861
+            }
+          },
+          {
+            "facility": "Qilu Hospital of Shandong University",
+            "city": "Jinan",
+            "state": "Shandong",
+            "zip": "250012",
+            "country": "China",
+            "geoPoint": {
+              "lat": 36.66833,
+              "lon": 116.99722
+            }
+          },
+          {
+            "facility": "Qilu Children's Hospital of Shandong University",
+            "city": "Jinan",
+            "state": "Shandong",
+            "zip": "250021",
+            "country": "China",
+            "geoPoint": {
+              "lat": 36.66833,
+              "lon": 116.99722
+            }
+          },
+          {
+            "facility": "Huashan Hospital, Fudan University",
+            "city": "Shanghai",
+            "state": "Shanghai Municipality",
+            "zip": "200040",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.22222,
+              "lon": 121.45806
+            }
+          },
+          {
+            "facility": "Xinhua Hospital Affiliated to Shanghai Jiaotong University School of Medicine",
+            "city": "Shanghai",
+            "state": "Shanghai Municipality",
+            "zip": "200086",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.22222,
+              "lon": 121.45806
+            }
+          },
+          {
+            "facility": "Children's Hospital of Fudan University",
+            "city": "Shanghai",
+            "state": "Shanghai Municipality",
+            "zip": "201102",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.22222,
+              "lon": 121.45806
+            }
+          },
+          {
+            "facility": "the Children's Hospital of Shanxi Province",
+            "city": "Taiyuan",
+            "state": "Shanxi",
+            "zip": "030013",
+            "country": "China",
+            "geoPoint": {
+              "lat": 37.86944,
+              "lon": 112.56028
+            }
+          },
+          {
+            "facility": "Sichuan Academy of Medical Sciences & Sichuan Provincial People's Hospital",
+            "city": "Chengdu",
+            "state": "Sichuan",
+            "zip": "610072",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.66667,
+              "lon": 104.06667
+            }
+          },
+          {
+            "facility": "Affiliated Hospital of Southwest Medical University",
+            "city": "Luzhou",
+            "state": "Sichuan",
+            "zip": "646000",
+            "country": "China",
+            "geoPoint": {
+              "lat": 28.8903,
+              "lon": 105.42575
+            }
+          },
+          {
+            "facility": "People's Hospital of Xinjiang Uygur Autonomous Region",
+            "city": "\u00dcr\u00fcmqi",
+            "state": "Xinjiang Uygur Autonomous Region",
+            "zip": "830001",
+            "country": "China",
+            "geoPoint": {
+              "lat": 43.80096,
+              "lon": 87.60046
+            }
+          },
+          {
+            "facility": "Kunming Children's Hospital",
+            "city": "Kunming",
+            "state": "Yunnan",
+            "zip": "650100",
+            "country": "China",
+            "geoPoint": {
+              "lat": 25.03889,
+              "lon": 102.71833
+            }
+          },
+          {
+            "facility": "the Children's Hospital, Zhejiang University School of Medicine",
+            "city": "Hanzhou",
+            "state": "Zhejiang",
+            "zip": "310003",
+            "country": "China"
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2025-12-15"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D016543",
+            "term": "Central Nervous System Neoplasms"
+          },
+          {
+            "id": "D001932",
+            "term": "Brain Neoplasms"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D009423",
+            "term": "Nervous System Neoplasms"
+          },
+          {
+            "id": "D009371",
+            "term": "Neoplasms by Site"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D001927",
+            "term": "Brain Diseases"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          }
+        ]
+      }
+    },
+    "hasResults": false,
+    "nct_id": "NCT04351035"
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT02343835",
+        "orgStudyIdInfo": {
+          "id": "JF-20150113(4)"
+        },
+        "organization": {
+          "fullName": "Fuda Cancer Hospital, Guangzhou",
+          "class": "OTHER"
+        },
+        "briefTitle": "Anti-Tumor Immunity Induced by IRE of Unresectable Pancreatic Cancer",
+        "officialTitle": "IRE: Anti-Tumor Immunity Induced by IRE of Unresectable Pancreatic Cancer"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2019-02",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2015-01-01",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2020-12-01",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2021-05-01",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2015-01-12",
+        "studyFirstSubmitQcDate": "2015-01-16",
+        "studyFirstPostDateStruct": {
+          "date": "2015-01-22",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2021-09-01",
+        "lastUpdatePostDateStruct": {
+          "date": "2021-09-05",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "Fuda Cancer Hospital, Guangzhou",
+          "class": "OTHER"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": true
+      },
+      "descriptionModule": {
+        "briefSummary": "This protocol will study the impact of Irreversible electroporation (IRE) on immune response in patients diagnosed with unresectable pancreatic cancers smaller than 5.0 cm. It will profile the immune response to IRE of unresectable pancreatic cancers. The intra-tumoral and systemic immune response to IRE will be determined and compared to pre-ablated pancreatic cancer specimens and historical control specimens.",
+        "detailedDescription": "Thirty patients with histologically confirmed locally advanced pancreatic adenocarcinoma (\u22645.0cm) will undergo percutaneous irreversible electroporation of the tumor using CT and ultrasound guidance. Blood will be drawn for research before IRE. Blood and tissue samples will be used.\n\nAfter IRE, patients will be carefully monitored and systemic immune responses are registered. Follow-up will consist of frequent CT and MRI scanning, as well as serum CA19.9 tumor marker and quality of life questionnaires and overall survival (OS).\n\nThe investigators hypothesize that IRE in the pancreas will induce good symptom palliation without causing severe complications as well as perfect systemic immune response."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Pancreatic Cancer"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "SINGLE",
+            "whoMasked": [
+              "INVESTIGATOR"
+            ]
+          }
+        },
+        "enrollmentInfo": {
+          "count": 20,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "NanoKnife LEDC System",
+            "type": "EXPERIMENTAL",
+            "description": "90 pulses of 70 microseconds each in duration will be administered per electrode pair.",
+            "interventionNames": [
+              "Device: NanoKnife LEDC System"
+            ]
+          },
+          {
+            "label": "Control",
+            "type": "NO_INTERVENTION",
+            "description": "The patients without treatment"
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DEVICE",
+            "name": "NanoKnife LEDC System",
+            "description": "Irreversible electroporation (IRE) is a new, minimal-invasive image-guided treatment method for tumors not amenable for surgical resection or thermal ablation, due to vicinity near vital structures such as vessels and bile ducts. With IRE, multiple electrical pulses are applied to tumorous tissue. These pulses alter the existing transmembrane potential of the cell membranes, and create 'nanopores', after which the cell dies through loss of homeostasis.",
+            "armGroupLabels": [
+              "NanoKnife LEDC System"
+            ],
+            "otherNames": [
+              "NanoKnife"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Characterization of the intra-tumoral and systemic immune response to IRE in unresectable pancreatic cancers",
+            "description": "1. Determine number (percentage via flow cytometry), phenotype and functionality of tumor infiltrating lymphocytes in ablated pancreatic cancer\n2. Determine morphology and histology of regional lymph node after IRE\n3. Quantify T cell response (IUs of IL2 and IFN gamma, and T cell specific cells as measured by number of spots on an elispot assay) to tumor associated antigens using in vitro assays of T cell proliferation and function (cytokine release, elispot, peptide-MHC)",
+            "timeFrame": "12 Months"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Comparison immune response between non-ablated and ablated pancreatic cancer and pre-ablated and post ablated serum",
+            "description": "1. Compare serum cytokine and chemokine expression (in IU) between patients undergoing or not undergoing tumor ablation\n2. Characterize cytokine and chemokine expression (in IU) in ablated tissue and in pre-ablated and post-ablated serum over time\n3. Compare intra-tumoral lymphocyte populations (percentage via flow cytometry) in ablated tumor tissue with paraffin embedded specimens for tumors that are matched for age, tumor size and histology.",
+            "timeFrame": "24 Months"
+          }
+        ],
+        "otherOutcomes": [
+          {
+            "measure": "Overall survival and (local and distant) progression-free survival.",
+            "timeFrame": "60 Months"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Radiologic confirmation of unresectable pancreatic cancer by at least CT of chest and abdomen\n* Screening must be performed no longer than 2 weeks prior to study inclusion\n* Maximum tumor diameter \u2264 5 cm;\n* Histological or cytological confirmation of pancreatic adenocarcinoma;\n* Age \u2265 18 years;\n* ASA-classification 0 - 3\n* Life expectancy of at least 12 weeks;\n* Adequate bone marrow, liver and renal function as assessed by the following laboratory requirements to be conducted within 7 days prior to definite inclusion;\n\n  * Hemoglobin \u2265 5.6 mmol/L;\n  * Absolute neutrophil count (ANC) \u2265 1,500/mm3;\n  * Platelet count \u2265 100\\*109/l;\n  * Total bilirubin \u2264 1.5 times the upper limit of normal (ULN);\n  * ALT and AST \u2264 2.5 x ULN;\n  * Serum creatinine \u2264 1.5 x ULN or a calculated creatinine clearance \u2265 50 ml/min;\n  * Prothrombin time or INR \\< 1.5 x ULN;\n  * Activated partial thromboplastin time \\< 1.25 x ULN (therapeutic anticoagulation therapy is allowed if this treatment can be interrupted as judged by the treating physician);\n* Written informed consent;\n\nExclusion Criteria:\n\n* Resectable pancreatic adenocarcinoma as discussed by our multidisciplinary hepatobiliary team;\n* Successful down staging after (radio)chemotherapy from previous unresectable/borderline tumor to resectable tumor;\n* History of epilepsy;\n* History of cardiac disease:\n\n  * Congestive heart failure \\>NYHA class 2;\n  * Active Coronary Artery Disease (defined as myocardial infarction within 6 months prior to screening);\n  * Cardiac arrhythmias requiring anti-arrhythmic therapy or pacemaker (beta blockers for antihypertensive regimen are permitted);\n* Uncontrolled hypertension. Blood pressure must be \u2264160/95 mmHg at the time of screening on a stable antihypertensive regimen;\n* Compromised liver function (e.g. signs of portal hypertension, INR \\> 1,5 without use of anticoagulants, ascites);\n* Uncontrolled infections (\\> grade 2 NCI-CTC version 3.0);\n* Pregnant. Women of childbearing potential must have a negative pregnancy test performed within 7 days of the start of treatment;\n* Immunotherapy \u2264 6 weeks prior to the procedure;\n* Chemotherapy \u2264 6 weeks prior to the procedure;\n* Radiotherapy \u2264 6 weeks prior to the procedure;\n* Concomitant use of anti-convulsive and anti-arrhythmic drugs (other than beta blockers used for antihypertensive);\n* Allergy to contrast media;\n* Any implanted stimulation device;\n* Any implanted metal stent/device within the area of ablation that cannot be removed;\n* Any condition that is unstable or that could jeopardize the safety of the subject and their compliance in the study; Of note, patients with contra-indications for MRI will not be excluded from participation: in this case radiologic follow-up will consist of CT-scanning according to protocol.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "80 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Lizhi l Niu, M.D.,PHD.",
+            "affiliation": "FUDA Cancer Hospital",
+            "role": "STUDY_CHAIR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "FUDA Cancer Hospital",
+            "city": "Guangzhou",
+            "state": "Guangdong",
+            "zip": "510665",
+            "country": "China",
+            "geoPoint": {
+              "lat": 23.11667,
+              "lon": 113.25
+            }
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2025-12-15"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D010190",
+            "term": "Pancreatic Neoplasms"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D004067",
+            "term": "Digestive System Neoplasms"
+          },
+          {
+            "id": "D009371",
+            "term": "Neoplasms by Site"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D004701",
+            "term": "Endocrine Gland Neoplasms"
+          },
+          {
+            "id": "D004066",
+            "term": "Digestive System Diseases"
+          },
+          {
+            "id": "D010182",
+            "term": "Pancreatic Diseases"
+          },
+          {
+            "id": "D004700",
+            "term": "Endocrine System Diseases"
+          }
+        ]
+      }
+    },
+    "hasResults": false,
+    "nct_id": "NCT02343835"
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT01852435",
+        "orgStudyIdInfo": {
+          "id": "NHL-001"
+        },
+        "organization": {
+          "fullName": "Ruijin Hospital",
+          "class": "OTHER"
+        },
+        "briefTitle": "R-CEOP-90/R-CEOP-70 Versus R-CHOP-50 in the Treatment of Diffuse Large B-cell Lymphoma and Follicular Lymphoma Grade 3B",
+        "officialTitle": "A Multi-center, Prospective, Randomized Phase III Study of the Safety and Efficacy of R-CEOP-90/R-CEOP-70 Versus R-CHOP-50 in the Treatment of Diffuse Large B-cell Lymphoma and Follicular Lymphoma Grade 3B"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2017-11",
+        "overallStatus": "UNKNOWN",
+        "lastKnownStatus": "ACTIVE_NOT_RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2013-05"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2017-12",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2018-02",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2013-05-08",
+        "studyFirstSubmitQcDate": "2013-05-10",
+        "studyFirstPostDateStruct": {
+          "date": "2013-05-13",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2017-11-10",
+        "lastUpdatePostDateStruct": {
+          "date": "2017-11-14",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "PRINCIPAL_INVESTIGATOR",
+          "investigatorFullName": "Zhao Weili",
+          "investigatorTitle": "Professor",
+          "investigatorAffiliation": "Ruijin Hospital"
+        },
+        "leadSponsor": {
+          "name": "Ruijin Hospital",
+          "class": "OTHER"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": true
+      },
+      "descriptionModule": {
+        "briefSummary": "The main purpose of this study is to evaluate the safety and efficacy of R-CEOP-90/R-CEOP-70 Versus R-CHOP-50 in the Treatment of Diffuse Large B-cell lymphoma and Follicular Lymphoma Grade 3B patients.",
+        "detailedDescription": "The study aims to evaluate the safety and efficacy of R-CEOP-90/R-CEOP-70 Versus R-CHOP-50 in the Treatment of Diffuse Large B-cell lymphoma and Follicular Lymphoma Grade 3B patients."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Diffuse Large B-cell Lymphoma",
+          "Follicular Lymphoma Grade 3B"
+        ],
+        "keywords": [
+          "diffuse large B-cell lymphoma",
+          "follicular lymphoma grade 3B"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE3"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 648,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "R-CHOP-50",
+            "type": "ACTIVE_COMPARATOR",
+            "description": "R-CHOP-50 (Rituximab 375 mg/m2 d1+Cyclophosphomide 750mg/m2 d2+Adriamycin 50mg/m2 d2+vincristine 1.4mg/m2 d2+Prednisone 60 mg/m2 d2-6) every 21 days for 6 cycles, followed by Rituximab 375 mg/m2 every 21 days for 2 cycles.",
+            "interventionNames": [
+              "Drug: R-CHOP-50"
+            ]
+          },
+          {
+            "label": "R-CEOP-70",
+            "type": "EXPERIMENTAL",
+            "description": "R-CEOP-70 (Rituximab 375 mg/m2 d1+Cyclophosphomide 750mg/m2 d2+Adriamycin 70mg/m2 d2+vincristine 1.4mg/m2 d2+Prednisone 60 mg/m2 d2-6) every 21 days for 6 cycles, followed by Rituximab 375 mg/m2 every 21 days for 2 cycles.",
+            "interventionNames": [
+              "Drug: R-CEOP-70"
+            ]
+          },
+          {
+            "label": "R-CEOP-90",
+            "type": "EXPERIMENTAL",
+            "description": "R-CEOP-90 (Rituximab 375 mg/m2 d1+Cyclophosphomide 750mg/m2 d2+Adriamycin 90mg/m2 d2+vincristine 1.4mg/m2 d2+Prednisone 60 mg/m2 d2-6) every 21 days for 6 cycles, followed by Rituximab 375 mg/m2 every 21 days for 2 cycles.",
+            "interventionNames": [
+              "Drug: R-CEOP-90"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "R-CEOP-70",
+            "armGroupLabels": [
+              "R-CEOP-70"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "R-CEOP-90",
+            "armGroupLabels": [
+              "R-CEOP-90"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "R-CHOP-50",
+            "armGroupLabels": [
+              "R-CHOP-50"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "progression free survival",
+            "timeFrame": "2 year"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "overall survival",
+            "timeFrame": "2 year"
+          },
+          {
+            "measure": "Response rate",
+            "description": "21 days as one cycle",
+            "timeFrame": "Every 4 cycles during treatment and then every 3 months for 2 years"
+          },
+          {
+            "measure": "Safety as assessed using the CTCAE",
+            "description": "21 days as one cycle",
+            "timeFrame": "Days 1 of each course and then every 3 months for 2 years"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n1. Histologically confirmed de novo diffuse large B-cell lymphoma or follicular lymphoma grade 3B\n2. Age\\>=16 y.o.,\\<=80 y.o.\n3. ECOG \\< 3\n4. No past history of malignancy\n5. Radiologically measurable disease, CT imaging in screening showing 2 or more clearly demarcated lesions with a largest diameter \\> 1.5 cm, or 1 clearly demarcated lesion with a largest diameter \\> 2.0 cm.\n6. Life expectancy\\>6 months\n7. Informed consented\n\nExclusion Criteria:\n\n1. Chemotherapy before\n2. Bone marrow transplantation before\n3. History of malignancy\n4. Active infectious disease requiring general antibiotics, anti-fungal or anti-virus therapy\n5. Uncontrollable cardio-cerebral vascular, coagulative, autoimmune, serious infectious disease\n6. Primary cutaneous, CNS, mediastinal DLBCL\n7. LVEF\u226450%\n8. Other uncontrollable medical condition that may that may interfere the participation of the study\n9. Lab at enrollment(unless caused by lymphoma)\n\n   * Neutrophile\\<1.5\\*10\\^9/L\n   * Platelet\\<80\\*10\\^9/L\n   * Hemoglobulin\\<100g/L\n   * ALT or AST \\>2\\*ULN,AKP or bilirubin \\>1.5\\*ULN\n   * Creatinine\\>1.5\\*ULN\n10. Not able to comply to the protocol for mental or other unknown reasons\n11. Pregnant or lactation\n12. Active liver or biliary disease\n13. If HbsAg positive, should check HBV DNA, DNA positive patients cannot be enrolled. If HBsAg negative but HBcAb positive (whatever HBsAb status), should check HBV DNA,DNA positive patients cannot be enrolled.\n14. HIV infection",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "16 Years",
+        "maximumAge": "80 Years",
+        "stdAges": [
+          "CHILD",
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Weili Zhao, MD, PhD",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Southwest Hospital",
+            "city": "Chongqing",
+            "state": "Chongqing Municipality",
+            "country": "China",
+            "geoPoint": {
+              "lat": 29.56026,
+              "lon": 106.55771
+            }
+          },
+          {
+            "facility": "Fujian Medical University Union Hospital",
+            "city": "Fuzhou",
+            "state": "Fujian",
+            "country": "China",
+            "geoPoint": {
+              "lat": 26.06139,
+              "lon": 119.30611
+            }
+          },
+          {
+            "facility": "Guangdong General Hospital",
+            "city": "Guangzhou",
+            "state": "Guangdong",
+            "country": "China",
+            "geoPoint": {
+              "lat": 23.11667,
+              "lon": 113.25
+            }
+          },
+          {
+            "facility": "Henan Cancer Hospital",
+            "city": "Zhengzhou",
+            "state": "Henan",
+            "country": "China",
+            "geoPoint": {
+              "lat": 34.75778,
+              "lon": 113.64861
+            }
+          },
+          {
+            "facility": "Tongji Hospital",
+            "city": "Wuhan",
+            "state": "Hubei",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.58333,
+              "lon": 114.26667
+            }
+          },
+          {
+            "facility": "Jiangsu Province Hospital",
+            "city": "Nanjing",
+            "state": "Jiangsu",
+            "country": "China",
+            "geoPoint": {
+              "lat": 32.06167,
+              "lon": 118.77778
+            }
+          },
+          {
+            "facility": "The first hospital of China medical university",
+            "city": "Shenyang",
+            "state": "Liaoning",
+            "country": "China",
+            "geoPoint": {
+              "lat": 41.79222,
+              "lon": 123.43278
+            }
+          },
+          {
+            "facility": "Shanxi Provincial Tumor Hospital",
+            "city": "Taiyuan",
+            "state": "Shanxi",
+            "country": "China",
+            "geoPoint": {
+              "lat": 37.86944,
+              "lon": 112.56028
+            }
+          },
+          {
+            "facility": "West China Hospital",
+            "city": "Chengdu",
+            "state": "Sichuan",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.66667,
+              "lon": 104.06667
+            }
+          },
+          {
+            "facility": "Institute of Hematology and Blood Diseases Hospital",
+            "city": "Tianjin",
+            "state": "Tianjin Municipality",
+            "country": "China",
+            "geoPoint": {
+              "lat": 39.14222,
+              "lon": 117.17667
+            }
+          },
+          {
+            "facility": "Shandong Provincal Hospital",
+            "city": "Jinan",
+            "country": "China",
+            "geoPoint": {
+              "lat": 36.66833,
+              "lon": 116.99722
+            }
+          },
+          {
+            "facility": "Shanghai Ruijin Hospital",
+            "city": "Shanghai",
+            "zip": "200025",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.22222,
+              "lon": 121.45806
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "33107145",
+            "type": "DERIVED",
+            "citation": "Sun R, Zheng Z, Wang L, Cheng S, Shi Q, Qu B, Fu D, Leboeuf C, Zhao Y, Ye J, Janin A, Zhao WL. A novel prognostic model based on four circulating miRNA in diffuse large B-cell lymphoma: implications for the roles of MDSC and Th17 cells in lymphoma progression. Mol Oncol. 2021 Jan;15(1):246-261. doi: 10.1002/1878-0261.12834. Epub 2020 Nov 9."
+          },
+          {
+            "pmid": "31126528",
+            "type": "DERIVED",
+            "citation": "Xu PP, Fu D, Li JY, Hu JD, Wang X, Zhou JF, Yu H, Zhao X, Huang YH, Jiang L, Liu F, Su LP, Chen ZW, Zeng QS, Chen JP, Fang MY, Ma J, Liu T, Song YP, Yu K, Li Y, Qiu LG, Chen XQ, Gu J, Yan JS, Hou M, Huang HY, Wang L, Cheng S, Shen Y, Xiong H, Chen SJ, Zhao WL. Anthracycline dose optimisation in patients with diffuse large B-cell lymphoma: a multicentre, phase 3, randomised, controlled trial. Lancet Haematol. 2019 Jun;6(6):e328-e337. doi: 10.1016/S2352-3026(19)30051-1."
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2025-12-15"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D016403",
+            "term": "Lymphoma, Large B-Cell, Diffuse"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D016393",
+            "term": "Lymphoma, B-Cell"
+          },
+          {
+            "id": "D008228",
+            "term": "Lymphoma, Non-Hodgkin"
+          },
+          {
+            "id": "D008223",
+            "term": "Lymphoma"
+          },
+          {
+            "id": "D009370",
+            "term": "Neoplasms by Histologic Type"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D008232",
+            "term": "Lymphoproliferative Disorders"
+          },
+          {
+            "id": "D008206",
+            "term": "Lymphatic Diseases"
+          },
+          {
+            "id": "D006425",
+            "term": "Hemic and Lymphatic Diseases"
+          },
+          {
+            "id": "D007160",
+            "term": "Immunoproliferative Disorders"
+          },
+          {
+            "id": "D007154",
+            "term": "Immune System Diseases"
+          }
+        ]
+      }
+    },
+    "hasResults": false,
+    "nct_id": "NCT01852435"
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT05470335",
+        "orgStudyIdInfo": {
+          "id": "EMN-2021-08143"
+        },
+        "organization": {
+          "fullName": "Zealand University Hospital",
+          "class": "OTHER"
+        },
+        "briefTitle": "Nurse-led Sheath Insertion in Cardiac Patients",
+        "officialTitle": "Patient Comfort, Success Rate, Procedure Time and Complications During Sheath Insertion by Nurses and Physicians in Connection With Invasive Examination and Treatment of Cardiac Patients",
+        "acronym": "NUSHI"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2024-08",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2022-09-01",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2025-09",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2022-05-31",
+        "studyFirstSubmitQcDate": "2022-07-21",
+        "studyFirstPostDateStruct": {
+          "date": "2022-07-22",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2024-08-05",
+        "lastUpdatePostDateStruct": {
+          "date": "2024-08-06",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "Zealand University Hospital",
+          "class": "OTHER"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": false,
+        "isFdaRegulatedDrug": false,
+        "isFdaRegulatedDevice": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The aim of project NUSHI is to elucidate, that radial sheath insertion can be performed by nurses and physicians with the same level of comfort and safety.",
+        "detailedDescription": "Background: Insertion of sheath in the radial artery in connection with examination and treatment of patients with coronary artery disease is usually performed by specialized invasive cardiologists or trainees. Whether sheath insertion can be performed by nurses with the same level of comfort and pain is uncertain.\n\nEligibility: Patients referred for coronary angiography (CAG) and/or percutaneous coronary intervention (PCI) due to suspicion of coronary artery disease are included\n\nRandomization: Patients are randomized 1:1 to sheath insertion by nurse or physician\n\nMethods: Insertion of 5 or 6 radial sheaths is performed in local anesthesia\n\nOutcome measures: Comfort and pain level is registered from immediately after sheath insertion until start of CAG/PCI.\n\nAdditional outcome measures: Oximetry test is performed immediately after sheath removal - and repeated after 1 month in case of occlusion. Any complication is recorded from the patient enters the wake-up room until discharge.\n\nAll patients are contacted after 1 year in order to register adverse events."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Coronary Artery Disease"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "NA"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 1000,
+          "type": "ESTIMATED"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "physician insertion",
+            "type": "NO_INTERVENTION",
+            "description": "radial sheath insertion is performed by physicians"
+          },
+          {
+            "label": "nurse insertion",
+            "type": "EXPERIMENTAL",
+            "description": "radial sheath insertion is performed by nurses",
+            "interventionNames": [
+              "Procedure: nurse-led sheath insertion"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "PROCEDURE",
+            "name": "nurse-led sheath insertion",
+            "description": "radial sheaths for coronary examination and intervention are performed by experienced nurses",
+            "armGroupLabels": [
+              "nurse insertion"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "pain level",
+            "description": "pain level during sheath insertion is measured using a 1 to 10 point numeric rating scale. For pain registration: 0 is no pain and 10 the worst imaginable pain.",
+            "timeFrame": "through study completion, an average of 1 year"
+          },
+          {
+            "measure": "comfort level",
+            "description": "comfort level during sheath insertion is measured using a 1 to 10 point numeric rating scale. For comfort: 0 is no comfort at all and 10 is the best imaginable comfort.",
+            "timeFrame": "through study completion, an average of 1 year"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "success rate",
+            "description": "success rate with regard to successful sheath insertion is assured",
+            "timeFrame": "through study completion, an average of 1 year"
+          },
+          {
+            "measure": "time consumption",
+            "description": "time consumption for both groups",
+            "timeFrame": "through study completion, an average of 1 year"
+          },
+          {
+            "measure": "convertion",
+            "description": "successful conversion yes/no from physician to nurse or from nurse to physician determined by the possibility to accomplish the diagnostic or therapeutic procedure",
+            "timeFrame": "through study completion, an average of 1 year"
+          },
+          {
+            "measure": "complications",
+            "description": "occurrence of radial occlusion, perforation, pseudoaneurysm, and compartment syndrome",
+            "timeFrame": "through study completion, an average of 1 year"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* patients suspected of having coronary artery disease\n* with normal puls oxymetry on the right hand\n* understands patient information and accepts to participate\n\nExclusion Criteria:\n\n* under consideration for cardiac valve replacement\n* systolic blood pressure persistently \\>180 mmHg",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "centralContacts": [
+          {
+            "name": "Henning Kelbaek, MD",
+            "role": "CONTACT",
+            "phone": "20230078",
+            "email": "heke@regionsjaelland.dk"
+          },
+          {
+            "name": "Connie Olsen, RN",
+            "role": "CONTACT",
+            "phone": "47326169",
+            "email": "clo@regionsjaelland.dk"
+          }
+        ],
+        "overallOfficials": [
+          {
+            "name": "Henning Kelb\u00e6k, MD",
+            "affiliation": "Chief Physician",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Zealand University Hospital",
+            "status": "RECRUITING",
+            "city": "Roskilde",
+            "state": "Danmark",
+            "zip": "DK 4000",
+            "country": "Denmark",
+            "contacts": [
+              {
+                "name": "Henning Kelbaek",
+                "role": "CONTACT",
+                "phone": "20230078",
+                "email": "heke@regionsjaelland.dkdadlnet.dk"
+              },
+              {
+                "name": "Connie Olsen",
+                "role": "CONTACT",
+                "phone": "47326169",
+                "email": "clo@reionsjaelland.dk"
+              },
+              {
+                "name": "Yama Fakhri, MD",
+                "role": "SUB_INVESTIGATOR"
+              }
+            ],
+            "geoPoint": {
+              "lat": 55.64152,
+              "lon": 12.08035
+            }
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO"
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2025-12-15"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D003324",
+            "term": "Coronary Artery Disease"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003327",
+            "term": "Coronary Disease"
+          },
+          {
+            "id": "D017202",
+            "term": "Myocardial Ischemia"
+          },
+          {
+            "id": "D006331",
+            "term": "Heart Diseases"
+          },
+          {
+            "id": "D002318",
+            "term": "Cardiovascular Diseases"
+          },
+          {
+            "id": "D001161",
+            "term": "Arteriosclerosis"
+          },
+          {
+            "id": "D001157",
+            "term": "Arterial Occlusive Diseases"
+          },
+          {
+            "id": "D014652",
+            "term": "Vascular Diseases"
+          }
+        ]
+      }
+    },
+    "hasResults": false,
+    "nct_id": "NCT05470335"
+  }
+]
