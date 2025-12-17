@@ -32,7 +32,7 @@ class Trial(TimestampedBase):
 
     __tablename__ = "trials"
 
-    name = Column(String(255), nullable=False)
+    name = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
 
     demand_signals = relationship("DemandSignal", back_populates="trial", cascade="all, delete-orphan")
