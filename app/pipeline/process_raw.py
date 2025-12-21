@@ -9,6 +9,7 @@ import os
 from decimal import Decimal
 from typing import Any, Dict, List, Tuple
 
+import httpx
 from sqlalchemy import Select, select
 
 from app.db.models import (
@@ -22,6 +23,9 @@ from app.db.models import (
 )
 from app.db.session import get_session
 from openai import OpenAI
+
+_EXTERNAL_CACHE: Dict[str, Dict] = {}
+NCT_API_BASE = os.getenv("NCT_API_BASE", "https://clinicaltrials.gov/api/v2/studies")
 
 KEYWORD_MAP: Dict[str, Dict[str, str]] = {
     "flow cytometry": {
@@ -77,23 +81,57 @@ def process_pending(batch_size: int) -> None:
             doc.status = "processing"
             session.flush()
             try:
+                trial_title = _extract_trial_name(doc.payload, doc.external_id)
                 trial = Trial(
-                    name=_extract_trial_name(doc.payload, doc.external_id),
+                    name=trial_title,
                     description=_extract_description(doc.payload),
                 )
                 session.add(trial)
                 session.flush()
 
-                default_lab = _extract_lab_name(doc.payload)
-                insights = _translate_payload(doc.payload, default_lab=default_lab)
+                external_payload = _fetch_external_payload(doc.external_id)
+                principal_investigator = _extract_principal_investigator(doc.payload)
+                if principal_investigator == "N/A" and external_payload:
+                    principal_investigator = _extract_principal_investigator(external_payload)
+                pi_guess_note = ""
+                if principal_investigator == "N/A":
+                    pi_name, guessed = _llm_extract_principal_investigator(
+                        doc.payload,
+                        doc.external_id,
+                        trial_title,
+                        external_payload=external_payload,
+                        allow_guess=False,
+                    )
+                    if pi_name:
+                        principal_investigator = pi_name
+                    else:
+                        pi_name, guessed = _llm_extract_principal_investigator(
+                            doc.payload,
+                            doc.external_id,
+                            trial_title,
+                            external_payload=external_payload,
+                            allow_guess=True,
+                        )
+                        if pi_name:
+                            pi_guess_note = f"PI guessed: {pi_name} (not verified)."
+                insights = _translate_payload(
+                    doc.payload,
+                    default_lab=principal_investigator,
+                    external_payload=external_payload,
+                )
                 for insight in insights:
+                    notes = insight.get("notes")
+                    if principal_investigator == "N/A":
+                        pi_note = "PI not found; N/A (guess required)."
+                        combined_note = " ".join(part for part in (notes, pi_note, pi_guess_note) if part)
+                        notes = combined_note
                     trial_insight = TrialInsight(
                         trial=trial,
                         raw_document=doc,
-                        lab_name=insight["lab_name"],
+                        lab_name=principal_investigator,
                         need_level=insight["need_level"],
                         product_category=insight["product_category"],
-                        notes=insight.get("notes"),
+                        notes=notes,
                     )
                     session.add(trial_insight)
 
@@ -154,16 +192,47 @@ def _extract_description(payload: Dict) -> str:
     return ""
 
 
-def _extract_lab_name(payload: Dict) -> str:
-    for key in ("lab", "lead_sponsor", "sponsor", "agency" ):
-        value = payload.get(key)
-        if isinstance(value, str) and value.strip():
-            return value.strip()
-        if isinstance(value, dict):
-            name = value.get("name") or value.get("agency")
-            if isinstance(name, str) and name.strip():
-                return name.strip()
-    return "Unknown Lab"
+def _extract_principal_investigator(payload: Dict) -> str:
+    """Extract principal investigator name without guessing."""
+    protocol = payload.get("protocolSection") or {}
+    if isinstance(protocol, dict):
+        contacts = protocol.get("contactsLocationsModule") or {}
+        if isinstance(contacts, dict):
+            officials = contacts.get("overallOfficials") or []
+            if isinstance(officials, list):
+                for official in officials:
+                    if not isinstance(official, dict):
+                        continue
+                    role = (official.get("role") or "").lower()
+                    name = (official.get("name") or "").strip()
+                    if name and "principal" in role:
+                        return name
+            central_contacts = contacts.get("centralContacts") or []
+            if isinstance(central_contacts, list):
+                for contact in central_contacts:
+                    if not isinstance(contact, dict):
+                        continue
+                    role = (contact.get("role") or "").lower()
+                    name = (contact.get("name") or "").strip()
+                    if name and "principal" in role:
+                        return name
+            central_contacts = contacts.get("centralContacts") or []
+            if isinstance(central_contacts, list):
+                for contact in central_contacts:
+                    if not isinstance(contact, dict):
+                        continue
+                    role = (contact.get("role") or "").lower()
+                    name = (contact.get("name") or "").strip()
+                    if name and "principal" in role:
+                        return name
+        sponsor_module = protocol.get("sponsorCollaboratorsModule") or {}
+        if isinstance(sponsor_module, dict):
+            lead_sponsor = sponsor_module.get("leadSponsor") or {}
+            if isinstance(lead_sponsor, dict):
+                sponsor_name = (lead_sponsor.get("name") or "").strip()
+                if sponsor_name:
+                    return sponsor_name
+    return "N/A"
 
 
 def _select_pending_docs(batch_size: int) -> Select:
@@ -175,11 +244,14 @@ def _select_pending_docs(batch_size: int) -> Select:
     )
 
 
-def _translate_payload(payload: Dict, default_lab: str) -> List[Dict[str, str]]:
-    llm_matches = _llm_translate_payload(payload, default_lab)
+def _translate_payload(
+    payload: Dict, default_lab: str, external_payload: Dict | None
+) -> List[Dict[str, str]]:
+    llm_matches = _llm_translate_payload(payload, default_lab, external_payload)
     if llm_matches:
         return llm_matches
-    return _keyword_translate_payload(payload, default_lab)
+    keyword_matches = _keyword_translate_payload(payload, default_lab)
+    return _filter_broad_categories(keyword_matches)
 
 
 def _keyword_translate_payload(payload: Dict, default_lab: str) -> List[Dict[str, str]]:
@@ -190,47 +262,40 @@ def _keyword_translate_payload(payload: Dict, default_lab: str) -> List[Dict[str
         if keyword in text_blob:
             matches.append(_build_match(payload, default_lab, mapping))
 
-    if not matches:
-        matches.append(
-            {
-                "lab_name": default_lab,
-                "need_level": payload.get("need_level", "Medium"),
-                "product_category": payload.get("default_category", "General Lab Supplies"),
-                "notes": payload.get("default_notes", "No keyword match; generic demand created."),
-                "supplier_name": payload.get("default_supplier", "General Lab Supply Co."),
-                "reagent_name": payload.get("default_reagent", "General Lab Kit"),
-                "inventory_qty": payload.get("default_inventory", 120),
-                "expected_demand": payload.get("default_expected_demand", 90),
-                "signal_strength": payload.get("default_signal_strength", "medium"),
-            }
-        )
     return matches
 
 
-def _llm_translate_payload(payload: Dict, default_lab: str) -> List[Dict[str, str]]:
+def _llm_translate_payload(
+    payload: Dict, default_lab: str, external_payload: Dict | None
+) -> List[Dict[str, str]]:
     """Use OpenAI to infer reagent needs from a trial payload."""
     client = _get_openai_client()
     if not client:
         return []
 
     trial_id = payload.get("nct_id") or payload.get("id") or "Unknown"
-    combined_text = _extract_text_blob(payload)
+    trial_title = _extract_trial_name(payload, trial_id)
+    combined_text = _combine_payload_text(payload, external_payload)
     if not combined_text.strip():
         return []
+    prompt_lab = default_lab if default_lab != "N/A" else "Unknown"
 
     prompt = (
         "You are an analyst that maps clinical trial protocols to reagent demand.\n"
         f"Trial identifier: {trial_id}\n"
-        f"Lab or sponsor: {default_lab}\n"
+        f"Trial title: {trial_title}\n"
+        f"Lab or sponsor: {prompt_lab}\n"
         "Given the protocol excerpt below, list the reagents, consumables, or cell lines required. "
         "For each item provide: lab_name, need_level (High/Medium/Low), product_category, supplier_name, "
         "reagent_name, inventory_qty (integer), expected_demand (integer), signal_strength "
         "(high/medium/low), and notes describing why it is needed.\n"
+        "product_category must be a specific reagent class. Do NOT use broad terms like "
+        "\"general lab supplies\", \"consumables\", \"drugs\", or \"equipment\".\n"
         "Return ONLY a JSON array of objects with those keys. Example:\n"
         '[{"lab_name":"ABC Lab","need_level":"High","product_category":"ELISA Kits",'
         '"supplier_name":"Cytokine Analytics","reagent_name":"IL-6 ELISA Kit","inventory_qty":150,'
         '"expected_demand":120,"signal_strength":"high","notes":"Measures IL-6 endpoints"}]\n\n'
-        f"Protocol text:\n{combined_text[:6000]}"  # limit size
+        f"Protocol text:\n{combined_text[:10000]}"  # limit size
     )
 
     schema = {
@@ -284,7 +349,7 @@ def _llm_translate_payload(payload: Dict, default_lab: str) -> List[Dict[str, st
                 continue
             normalized.append(
                 {
-                    "lab_name": item.get("lab_name") or default_lab,
+                    "lab_name": default_lab,
                     "need_level": item.get("need_level", "High"),
                     "product_category": item.get("product_category", "General Lab Supplies"),
                     "notes": item.get("notes", ""),
@@ -295,7 +360,16 @@ def _llm_translate_payload(payload: Dict, default_lab: str) -> List[Dict[str, st
                     "signal_strength": item.get("signal_strength", "high"),
                 }
             )
-        return normalized
+        refined = _filter_broad_categories(normalized)
+        if not refined or len(refined) < len(normalized):
+            refined = _llm_refine_specificity(
+                payload,
+                default_lab,
+                combined_text,
+                trial_title,
+                external_payload=external_payload,
+            ) or refined
+        return _filter_broad_categories(refined)
     except Exception as exc:  # pylint: disable=broad-except
         print(f"LLM translation failed for trial {trial_id}: {exc}")
         if "raw_text" in locals() and raw_text:
@@ -413,6 +487,209 @@ def _extract_text_blob(payload: Dict) -> str:
                                     segments.append(val)
 
     return "\n".join(segment for segment in segments if segment).strip()
+
+
+def _combine_payload_text(payload: Dict, external_payload: Dict | None) -> str:
+    base_text = _extract_text_blob(payload)
+    if not external_payload:
+        return base_text
+    extra_text = _extract_text_blob(external_payload)
+    if extra_text and extra_text not in base_text:
+        return f"{base_text}\n\nAdditional context:\n{extra_text}"
+    return base_text
+
+
+def _fetch_external_payload(nct_id: str) -> Dict | None:
+    if not nct_id:
+        return None
+    if nct_id in _EXTERNAL_CACHE:
+        return _EXTERNAL_CACHE[nct_id]
+    url = f"{NCT_API_BASE}/{nct_id}"
+    try:
+        response = httpx.get(url, timeout=30.0, follow_redirects=True)
+        response.raise_for_status()
+        data = response.json()
+        if isinstance(data, dict) and "studies" in data and data["studies"]:
+            data = data["studies"][0]
+        if isinstance(data, dict):
+            _EXTERNAL_CACHE[nct_id] = data
+            return data
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"External lookup failed for {nct_id}: {exc}")
+    return None
+
+
+def _filter_broad_categories(items: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    banned = {
+        "general lab supplies",
+        "consumables",
+        "drugs",
+        "equipment",
+        "supplies",
+        "laboratory equipment",
+        "laboratory supplies",
+    }
+    filtered = []
+    for item in items:
+        category = (item.get("product_category") or "").strip().lower()
+        if category in banned or category.startswith("general lab"):
+            continue
+        filtered.append(item)
+    return filtered
+
+
+def _llm_refine_specificity(
+    payload: Dict,
+    default_lab: str,
+    combined_text: str,
+    trial_title: str,
+    *,
+    external_payload: Dict | None,
+) -> List[Dict[str, str]] | None:
+    """Ask the model for more specific categories when output is too broad."""
+    client = _get_openai_client()
+    if not client or not combined_text.strip():
+        return None
+
+    trial_id = payload.get("nct_id") or payload.get("id") or "Unknown"
+    prompt = (
+        "You are refining reagent demand outputs. The previous output was too broad.\n"
+        f"Trial identifier: {trial_id}\n"
+        f"Trial title: {trial_title}\n"
+        f"Lab or sponsor: {default_lab if default_lab != 'N/A' else 'Unknown'}\n"
+        "Return ONLY specific reagent classes (e.g., flow cytometry antibodies, qPCR master mix, ELISA kits, "
+        "cell culture media, sequencing library prep kits). Do NOT use broad terms like "
+        "\"general lab supplies\", \"consumables\", \"drugs\", or \"equipment\".\n"
+        "If you cannot be specific, return an empty JSON array [].\n\n"
+        f"Protocol text:\n{combined_text[:6000]}"
+    )
+    schema = {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "demand_items",
+            "schema": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "lab_name": {"type": "string"},
+                        "need_level": {"type": "string"},
+                        "product_category": {"type": "string"},
+                        "supplier_name": {"type": "string"},
+                        "reagent_name": {"type": "string"},
+                        "inventory_qty": {"type": "integer"},
+                        "expected_demand": {"type": "integer"},
+                        "signal_strength": {"type": "string"},
+                        "notes": {"type": "string"},
+                    },
+                    "required": [
+                        "lab_name",
+                        "need_level",
+                        "product_category",
+                        "supplier_name",
+                        "reagent_name",
+                    ],
+                },
+            },
+        },
+    }
+    try:
+        response = _call_openai(client, prompt, schema)
+        raw_text = (response.output_text or "").strip()
+        data = json.loads(raw_text) if raw_text else []
+        if not isinstance(data, list):
+            return None
+        refined: List[Dict[str, str]] = []
+        for item in data:
+            if not isinstance(item, dict):
+                continue
+            refined.append(
+                {
+                    "lab_name": default_lab,
+                    "need_level": item.get("need_level", "High"),
+                    "product_category": item.get("product_category", "General Lab Supplies"),
+                    "notes": item.get("notes", ""),
+                    "supplier_name": item.get("supplier_name", "Specialized Supplier"),
+                    "reagent_name": item.get("reagent_name", "Custom Reagent"),
+                    "inventory_qty": item.get("inventory_qty", 150),
+                    "expected_demand": item.get("expected_demand", 120),
+                    "signal_strength": item.get("signal_strength", "high"),
+                }
+            )
+        return refined
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"LLM refinement failed for trial {trial_id}: {exc}")
+        return None
+
+
+def _llm_extract_principal_investigator(
+    payload: Dict,
+    trial_id: str,
+    trial_title: str,
+    *,
+    external_payload: Dict | None,
+    allow_guess: bool,
+) -> Tuple[str, bool]:
+    """Attempt to extract PI from payload; optionally allow guess with explicit flag."""
+    client = _get_openai_client()
+    if not client:
+        return "", False
+
+    protocol = payload.get("protocolSection", {}) or {}
+    contacts = protocol.get("contactsLocationsModule", {}) or {}
+    context = {
+        "overallOfficials": contacts.get("overallOfficials") or [],
+        "centralContacts": contacts.get("centralContacts") or [],
+        "leadSponsor": (protocol.get("sponsorCollaboratorsModule") or {}).get("leadSponsor") or {},
+        "nctId": trial_id,
+        "title": trial_title,
+    }
+    if external_payload:
+        ext_protocol = external_payload.get("protocolSection", {}) or {}
+        ext_contacts = ext_protocol.get("contactsLocationsModule", {}) or {}
+        context["externalOverallOfficials"] = ext_contacts.get("overallOfficials") or []
+        context["externalCentralContacts"] = ext_contacts.get("centralContacts") or []
+        context["externalLeadSponsor"] = (
+            ext_protocol.get("sponsorCollaboratorsModule", {}) or {}
+        ).get("leadSponsor") or {}
+
+    if allow_guess:
+        instruction = (
+            "Try harder to identify a principal investigator using the trial identifier/title "
+            "and the provided contact data. If you must guess, set guessed to true."
+        )
+    else:
+        instruction = "Only return a PI if explicitly present in the provided payload. Do not guess."
+
+    prompt = (
+        f"{instruction}\n"
+        "Return JSON: {\"pi_name\": \"\", \"guessed\": false}.\n"
+        f"Payload excerpt: {json.dumps(context)[:6000]}"
+    )
+    schema = {
+        "type": "json_schema",
+        "json_schema": {
+            "name": "pi_name",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "pi_name": {"type": "string"},
+                    "guessed": {"type": "boolean"},
+                },
+                "required": ["pi_name", "guessed"],
+            },
+        },
+    }
+    try:
+        response = _call_openai(client, prompt, schema)
+        raw_text = (response.output_text or "").strip()
+        data = json.loads(raw_text) if raw_text else {}
+        name = (data.get("pi_name") or "").strip()
+        guessed = bool(data.get("guessed"))
+        return name, guessed
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"LLM PI extraction failed for trial {trial_id}: {exc}")
+        return "", False
 
 
 def _get_openai_client() -> OpenAI | None:

@@ -5,61 +5,48 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Sequence
 
-from sqlalchemy import Select, func, select
+from sqlalchemy import Select, select
 
-from app.db.models import DemandSignal, InventorySnapshot, Reagent, Supplier, Trial
+from app.db.models import Trial, TrialInsight
 from app.db.session import get_session
 
 
 def fetch_rows() -> Sequence:
-    """Return supplier/reagent demand rows built from processed signals."""
-    latest_inventory = (
-        select(
-            InventorySnapshot.reagent_id.label("inv_reagent_id"),
-            func.max(InventorySnapshot.recorded_at).label("latest_recorded_at"),
-        )
-        .group_by(InventorySnapshot.reagent_id)
-        .subquery()
-    )
-
+    """Return trial insight rows for reporting."""
     stmt: Select = (
         select(
-            Supplier.name.label("supplier"),
-            Reagent.name.label("reagent"),
-            InventorySnapshot.quantity_on_hand.label("inventory"),
-            DemandSignal.expected_demand.label("expected_demand"),
-            DemandSignal.signal_strength.label("signal_strength"),
+            TrialInsight.lab_name.label("lab_name"),
+            TrialInsight.need_level.label("demand_signal"),
+            TrialInsight.product_category.label("product"),
+            TrialInsight.notes.label("demand_reason"),
             Trial.name.label("trial_name"),
-            DemandSignal.detected_at.label("detected_at"),
+            TrialInsight.created_at.label("detected_at"),
         )
-        .select_from(DemandSignal)
-        .join(Reagent, DemandSignal.reagent_id == Reagent.id)
-        .join(Supplier, Reagent.supplier_id == Supplier.id)
-        .join(Trial, DemandSignal.trial_id == Trial.id)
-        .outerjoin(
-            latest_inventory,
-            latest_inventory.c.inv_reagent_id == Reagent.id,
-        )
-        .outerjoin(
-            InventorySnapshot,
-            (InventorySnapshot.reagent_id == Reagent.id)
-            & (InventorySnapshot.recorded_at == latest_inventory.c.latest_recorded_at),
-        )
-        .order_by(DemandSignal.detected_at.desc())
+        .select_from(TrialInsight)
+        .outerjoin(Trial, Trial.id == TrialInsight.trial_id)
+        .order_by(TrialInsight.created_at.desc())
     )
     with get_session() as session:
         return session.execute(stmt).all()
 
 
 def print_table(rows: Sequence) -> None:
-    columns = ["Supplier", "Reagent", "Inventory", "Demand", "Signal", "Trial", "Detected at"]
+    columns = [
+        "Principal investigator",
+        "Email",
+        "Product",
+        "Demand signal",
+        "Demand reason",
+        "Trial",
+        "Detected at",
+    ]
     print(" | ".join(columns))
-    print("-" * 140)
+    print("-" * 160)
     for row in rows:
         print(
-            f"{row.supplier} | {row.reagent} | {row.inventory or 'N/A'} | "
-            f"{row.expected_demand} | {row.signal_strength} | "
-            f"{row.trial_name} | {row.detected_at:%Y-%m-%d %H:%M:%S}"
+            f"{row.lab_name} |  | {row.product} | {row.demand_signal} | "
+            f"{row.demand_reason or ''} | {row.trial_name or 'Unknown Trial'} | "
+            f"{row.detected_at:%Y-%m-%d %H:%M:%S}"
         )
 
 
@@ -79,26 +66,26 @@ def write_html(rows: Sequence) -> None:
   </style>
 </head>
 <body>
-  <h1>Supplier Demand Signals</h1>
+  <h1>Lab Demand Signals</h1>
   <table>
     <tr>
-      <th>Supplier</th>
-      <th>Reagent</th>
-      <th>Inventory</th>
-      <th>Demand</th>
-      <th>Signal strength</th>
+      <th>Principal investigator</th>
+      <th>Email</th>
+      <th>Product</th>
+      <th>Demand signal</th>
+      <th>Demand reason</th>
       <th>Trial</th>
       <th>Detected at</th>
     </tr>
 """
     body_rows = [
         "    <tr>"
-        f"<td>{row.supplier}</td>"
-        f"<td>{row.reagent}</td>"
-        f"<td>{row.inventory or 'N/A'}</td>"
-        f"<td>{row.expected_demand}</td>"
-        f"<td>{row.signal_strength}</td>"
-        f"<td>{row.trial_name}</td>"
+        f"<td>{row.lab_name}</td>"
+        "<td></td>"
+        f"<td>{row.product}</td>"
+        f"<td>{row.demand_signal}</td>"
+        f"<td>{row.demand_reason or ''}</td>"
+        f"<td>{row.trial_name or 'Unknown Trial'}</td>"
         f"<td>{row.detected_at:%Y-%m-%d %H:%M:%S}</td>"
         "</tr>"
         for row in rows
