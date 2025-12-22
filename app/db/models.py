@@ -1,6 +1,7 @@
 """ORM models for the Bloomberg research backend."""
 
 from sqlalchemy import (
+    Boolean,
     JSON,
     Column,
     DateTime,
@@ -32,6 +33,7 @@ class Trial(TimestampedBase):
 
     __tablename__ = "trials"
 
+    nct_id = Column(String(64), nullable=True, unique=True)
     name = Column(Text, nullable=False)
     description = Column(Text, nullable=True)
 
@@ -115,6 +117,9 @@ class TrialInsight(TimestampedBase):
     """Structured insight derived from a trial document."""
 
     __tablename__ = "trial_insights"
+    __table_args__ = (
+        UniqueConstraint("trial_id", "dedup_key", name="uq_trial_insights_trial_dedup"),
+    )
 
     trial_id = Column(Integer, ForeignKey("trials.id", ondelete="CASCADE"), nullable=True)
     raw_document_id = Column(Integer, ForeignKey("raw_documents.id", ondelete="SET NULL"), nullable=True)
@@ -122,6 +127,11 @@ class TrialInsight(TimestampedBase):
     need_level = Column(String(50), nullable=False)
     product_category = Column(String(255), nullable=False)
     notes = Column(Text, nullable=True)
+    dedup_key = Column(String(64), nullable=True)
+    last_seen_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    is_new = Column(Boolean, nullable=False, server_default="true")
+    is_changed = Column(Boolean, nullable=False, server_default="false")
+    change_summary = Column(Text, nullable=True)
 
     trial = relationship("Trial", back_populates="insights")
     raw_document = relationship("RawDocument", back_populates="insights")

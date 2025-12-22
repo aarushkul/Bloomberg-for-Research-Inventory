@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
 from decimal import Decimal
@@ -81,21 +82,21 @@ def process_pending(batch_size: int) -> None:
             doc.status = "processing"
             session.flush()
             try:
-                trial_title = _extract_trial_name(doc.payload, doc.external_id)
-                trial = Trial(
-                    name=trial_title,
-                    description=_extract_description(doc.payload),
+                nct_id = _extract_nct_id(doc.payload, doc.external_id)
+                trial_title = _extract_trial_name(doc.payload, nct_id)
+                trial = _get_or_create_trial(
+                    session,
+                    nct_id,
+                    trial_title,
+                    _extract_description(doc.payload),
                 )
-                session.add(trial)
-                session.flush()
 
-                external_payload = _fetch_external_payload(doc.external_id)
+                external_payload = _fetch_external_payload(nct_id)
                 principal_investigator = _extract_principal_investigator(doc.payload)
                 if principal_investigator == "N/A" and external_payload:
                     principal_investigator = _extract_principal_investigator(external_payload)
-                pi_guess_note = ""
                 if principal_investigator == "N/A":
-                    pi_name, guessed = _llm_extract_principal_investigator(
+                    pi_name, _ = _llm_extract_principal_investigator(
                         doc.payload,
                         doc.external_id,
                         trial_title,
@@ -105,7 +106,7 @@ def process_pending(batch_size: int) -> None:
                     if pi_name:
                         principal_investigator = pi_name
                     else:
-                        pi_name, guessed = _llm_extract_principal_investigator(
+                        pi_name, _ = _llm_extract_principal_investigator(
                             doc.payload,
                             doc.external_id,
                             trial_title,
@@ -113,18 +114,39 @@ def process_pending(batch_size: int) -> None:
                             allow_guess=True,
                         )
                         if pi_name:
-                            pi_guess_note = f"PI guessed: {pi_name} (not verified)."
+                            principal_investigator = "N/A"
                 insights = _translate_payload(
                     doc.payload,
                     default_lab=principal_investigator,
                     external_payload=external_payload,
                 )
+                now = dt.datetime.now(dt.timezone.utc)
                 for insight in insights:
-                    notes = insight.get("notes")
-                    if principal_investigator == "N/A":
-                        pi_note = "PI not found; N/A (guess required)."
-                        combined_note = " ".join(part for part in (notes, pi_note, pi_guess_note) if part)
-                        notes = combined_note
+                    notes = (insight.get("notes") or "").strip()
+                    dedup_key = _build_dedup_key(nct_id, insight["product_category"], notes)
+                    existing_insight = session.execute(
+                        select(TrialInsight).where(
+                            TrialInsight.trial_id == trial.id,
+                            TrialInsight.dedup_key == dedup_key,
+                        )
+                    ).scalar_one_or_none()
+                    if existing_insight:
+                        existing_insight.last_seen_at = now
+                        if existing_insight.is_new:
+                            existing_insight.is_new = False
+                        if existing_insight.need_level != insight["need_level"]:
+                            existing_insight.is_changed = True
+                            existing_insight.change_summary = (
+                                f"Demand signal changed from {existing_insight.need_level} "
+                                f"to {insight['need_level']}."
+                            )
+                            existing_insight.need_level = insight["need_level"]
+                        if notes and notes != (existing_insight.notes or ""):
+                            existing_insight.is_changed = True
+                            existing_insight.change_summary = "Demand reason updated."
+                            existing_insight.notes = notes
+                        continue
+
                     trial_insight = TrialInsight(
                         trial=trial,
                         raw_document=doc,
@@ -132,6 +154,8 @@ def process_pending(batch_size: int) -> None:
                         need_level=insight["need_level"],
                         product_category=insight["product_category"],
                         notes=notes,
+                        dedup_key=dedup_key,
+                        last_seen_at=now,
                     )
                     session.add(trial_insight)
 
@@ -169,6 +193,14 @@ def process_pending(batch_size: int) -> None:
                 doc.error_message = str(exc)
                 print(f"Failed to process {doc.source}:{doc.external_id} -> {exc}")
         print(f"Processed {len(docs)} document(s).")
+
+
+def _extract_nct_id(payload: Dict, fallback_id: str) -> str:
+    for key in ("nct_id", "nctId", "nctid", "id", "study_id"):
+        value = payload.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return fallback_id or ""
 
 
 def _extract_trial_name(payload: Dict, fallback_id: str) -> str:
@@ -443,6 +475,34 @@ def _compute_demand_metrics(
         Decimal(str(expected)) if expected is not None else default_map.get(level, Decimal("90"))
     )
     return expected_value, strength_value
+
+
+def _get_or_create_trial(session, nct_id: str, title: str, description: str) -> Trial:
+    existing = None
+    if nct_id:
+        existing = session.execute(select(Trial).where(Trial.nct_id == nct_id)).scalar_one_or_none()
+    if existing:
+        if title and existing.name != title:
+            existing.name = title
+        if description and existing.description != description:
+            existing.description = description
+        return existing
+    trial = Trial(
+        nct_id=nct_id or None,
+        name=title,
+        description=description,
+    )
+    session.add(trial)
+    session.flush()
+    return trial
+
+
+def _build_dedup_key(nct_id: str, product_category: str, demand_reason: str) -> str:
+    normalized = "|".join(
+        part.strip().lower()
+        for part in (nct_id or "", product_category or "", demand_reason or "")
+    )
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
 def _extract_text_blob(payload: Dict) -> str:

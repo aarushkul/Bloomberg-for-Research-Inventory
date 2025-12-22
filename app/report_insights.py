@@ -19,6 +19,8 @@ def fetch_rows() -> Sequence:
             TrialInsight.need_level.label("demand_signal"),
             TrialInsight.product_category.label("product"),
             TrialInsight.notes.label("demand_reason"),
+            TrialInsight.is_new.label("is_new"),
+            TrialInsight.is_changed.label("is_changed"),
             Trial.name.label("trial_name"),
             TrialInsight.created_at.label("detected_at"),
         )
@@ -36,6 +38,7 @@ def print_table(rows: Sequence) -> None:
         "Email",
         "Product",
         "Demand signal",
+        "Status",
         "Demand reason",
         "Trial",
         "Detected at",
@@ -43,8 +46,9 @@ def print_table(rows: Sequence) -> None:
     print(" | ".join(columns))
     print("-" * 160)
     for row in rows:
+        status = "new" if row.is_new else "changed" if row.is_changed else "existing"
         print(
-            f"{row.lab_name} |  | {row.product} | {row.demand_signal} | "
+            f"{row.lab_name} |  | {row.product} | {row.demand_signal} | {status} | "
             f"{row.demand_reason or ''} | {row.trial_name or 'Unknown Trial'} | "
             f"{row.detected_at:%Y-%m-%d %H:%M:%S}"
         )
@@ -73,6 +77,7 @@ def write_html(rows: Sequence) -> None:
       <th>Email</th>
       <th>Product</th>
       <th>Demand signal</th>
+      <th>Status</th>
       <th>Demand reason</th>
       <th>Trial</th>
       <th>Detected at</th>
@@ -84,6 +89,7 @@ def write_html(rows: Sequence) -> None:
         "<td></td>"
         f"<td>{row.product}</td>"
         f"<td>{row.demand_signal}</td>"
+        f"<td>{'new' if row.is_new else 'changed' if row.is_changed else 'existing'}</td>"
         f"<td>{row.demand_reason or ''}</td>"
         f"<td>{row.trial_name or 'Unknown Trial'}</td>"
         f"<td>{row.detected_at:%Y-%m-%d %H:%M:%S}</td>"
