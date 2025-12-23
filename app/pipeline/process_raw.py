@@ -7,6 +7,7 @@ import datetime as dt
 import hashlib
 import json
 import os
+import re
 from decimal import Decimal
 from typing import Any, Dict, List, Tuple
 
@@ -414,7 +415,7 @@ def _call_openai(client: OpenAI, prompt: str, schema: Dict) -> Any:
     kwargs = {
         "model": os.getenv("OPENAI_DEMAND_MODEL", "gpt-4.1-mini"),
         "input": prompt,
-        "temperature": 0.1,
+        "temperature": 0,
     }
     try:
         return client.responses.create(**kwargs, response_format=schema)
@@ -499,10 +500,22 @@ def _get_or_create_trial(session, nct_id: str, title: str, description: str) -> 
 
 def _build_dedup_key(nct_id: str, product_category: str, demand_reason: str) -> str:
     normalized = "|".join(
-        part.strip().lower()
-        for part in (nct_id or "", product_category or "", demand_reason or "")
+        (
+            (nct_id or "").strip().lower(),
+            _normalize_dedup_text(product_category),
+            _normalize_dedup_text(demand_reason),
+        )
     )
     return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def _normalize_dedup_text(value: str | None) -> str:
+    if not value:
+        return ""
+    lowered = value.lower()
+    lowered = re.sub(r"[^a-z0-9\s]+", " ", lowered)
+    lowered = re.sub(r"\s+", " ", lowered).strip()
+    return lowered
 
 
 def _extract_text_blob(payload: Dict) -> str:
