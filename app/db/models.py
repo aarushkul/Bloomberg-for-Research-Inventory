@@ -132,6 +132,15 @@ class TrialInsight(TimestampedBase):
     is_new = Column(Boolean, nullable=False, server_default="true")
     is_changed = Column(Boolean, nullable=False, server_default="false")
     change_summary = Column(Text, nullable=True)
+    
+    # Contact enrichment fields
+    contact_email = Column(String(255), nullable=True)
+    contact_phone = Column(String(100), nullable=True)
+    contact_institution = Column(String(500), nullable=True)
+    
+    # Sponsor tracking fields
+    sponsor_name = Column(String(500), nullable=True)
+    is_pfizer_trial = Column(Boolean, nullable=False, server_default="false")
 
     trial = relationship("Trial", back_populates="insights")
     raw_document = relationship("RawDocument", back_populates="insights")
